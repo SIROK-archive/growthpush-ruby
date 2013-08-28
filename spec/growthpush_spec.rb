@@ -88,7 +88,7 @@ describe "Growthpush" do
 
   describe 'create event (with client) using name & value' do
     before(:all) do
-      client = growth_push.create_client(TOKEN, Growthpush::OS_IOS)
+      growth_push.create_client(TOKEN, Growthpush::OS_IOS)
       event = growth_push.create_event('Launch', '')
     end
 
@@ -140,7 +140,7 @@ describe "Growthpush" do
 
   describe 'create tag (with client) using name & value' do
     before(:all) do
-      client = growth_push.create_client(TOKEN, Growthpush::OS_IOS)
+      growth_push.create_client(TOKEN, Growthpush::OS_IOS)
       tag = growth_push.create_tag('Gender', 'male')
     end
 
