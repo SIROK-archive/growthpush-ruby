@@ -16,6 +16,7 @@ class Growthpush
   #@application_id = nil
   #@secret = nil
   #@environment = nil
+  #@client = nil
 
   attr_reader :application_id
   attr_reader :secret
@@ -29,10 +30,30 @@ class Growthpush
 
   def create_client(token, os)
     client = Client.new(token, os)
+    @client = client
     return client.save(self)
   end
 
-  def create_event(client, name, value=nil)
+  def create_event(*args)
+    case args.length
+      when 1
+        create_event_2(args[0])
+      when 2
+        if args[0].kind_of? String
+          create_event_2(args[0],args[1])
+        elsif args[0].kind_of? Client
+          create_event_3(args[0],args[1])
+        else
+          raise ArgumentError
+        end
+      when 3
+        create_event_3(args[0],args[1],args[2])
+      else
+        raise ArgumentError
+    end
+  end
+
+  def create_event_3(client, name, value=nil)
     if client.instance_of? Client
       client = Client.new(client)
     end
@@ -40,8 +61,37 @@ class Growthpush
     event = Event.new(client, name, value)
     return event.save(self)
   end
+  private :create_event_3
 
-  def create_tag(client, name, value=nil)
+  def create_event_2(name, value = nil)
+    if @client.nil?
+      raise GrowthPushException.new('Client not found')
+    end
+
+    return create_event_3(@client,name,value)
+  end
+  private :create_event_2
+
+  def create_tag(*args)
+    case args.length
+      when 1
+        create_tag_2(args[0])
+      when 2
+        if args[0].kind_of? String
+          create_tag_2(args[0],args[1])
+        elsif args[0].kind_of? Client
+          create_tag_3(args[0],args[1])
+        else
+          raise ArgumentError
+        end
+      when 3
+        create_tag_3(args[0],args[1],args[2])
+      else
+        raise ArgumentError
+    end
+  end
+
+  def create_tag_3(client, name, value=nil)
     if client.instance_of? Client
       client = Client.new(client)
     end
@@ -49,5 +99,15 @@ class Growthpush
     tag = Tag.new(client, name, value)
     return tag.save(self)
   end
+  private :create_tag_3
+
+  def create_tag_2(name, value=nil)
+    if @client.nil?
+      raise GrowthPushException.new('Client not found')
+    end
+
+    return create_tag_3(@client, name, value)
+  end
+  private :create_tag_2
 
 end
