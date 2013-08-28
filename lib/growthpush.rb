@@ -37,7 +37,11 @@ class Growthpush
   def create_event(*args)
     case args.length
       when 1
-        create_event_2(args[0])
+        if args[0].kind_of? Hash
+          create_event_1(args[0])
+        else
+          create_event_2(args[0])
+        end
       when 2
         if args[0].kind_of? String
           if !@client.nil?
@@ -74,10 +78,23 @@ class Growthpush
   end
   private :create_event_2
 
+  def create_event_1(map={})
+    if @client.nil?
+      raise GrowthPushException.new('Client not found')
+    end
+
+    return create_event_2(map.keys[0].to_s, map.values[0])
+  end
+  private :create_event_1
+
   def create_tag(*args)
     case args.length
       when 1
-        create_tag_2(args[0])
+        if args[0].kind_of? Hash
+          create_tag_1(args[0])
+        else
+          create_tag_2(args[0])
+        end
       when 2
         if args[0].kind_of? String
           if !@client.nil?
@@ -113,5 +130,14 @@ class Growthpush
     return create_tag_3(@client, name, value)
   end
   private :create_tag_2
+
+  def create_tag_1(map={})
+    if @client.nil?
+      raise GrowthPushException.new('Client not found')
+    end
+
+    return create_tag_2(map.keys[0].to_s, map.values[0])
+  end
+  private :create_tag_1
 
 end

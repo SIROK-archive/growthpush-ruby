@@ -110,6 +110,19 @@ describe "Growthpush" do
     end
   end
 
+  describe 'create event (with client) using hash (name => value)' do
+    before(:all) do
+      growth_push.create_client(TOKEN, Growthpush::OS_IOS)
+      event = growth_push.create_event('Launch' => '')
+    end
+
+    it 'test' do
+      (event.goal_id > 0).should be_true
+      (event.timestamp > 0).should be_true
+      (event.client_id > 0).should be_true
+    end
+  end
+
   describe 'create event without client using name & value' do
     before(:all) do
       growth_push2 = Growthpush.new(APPLICATION_ID, SECRET)
@@ -119,6 +132,16 @@ describe "Growthpush" do
       proc{ growth_push2.create_event('Launch', '') }.should raise_error
     end
   end
+
+  describe 'create event without client using hash (name => value)' do
+      before(:all) do
+        growth_push2 = Growthpush.new(APPLICATION_ID, SECRET)
+      end
+
+      it 'test' do
+        proc{ growth_push2.create_event('Launch' => '') }.should raise_error
+      end
+    end
 
   describe 'create event with empty name (using token)' do
     it 'test' do
@@ -190,6 +213,19 @@ describe "Growthpush" do
     end
   end
 
+  describe 'create tag (with client) using hash (name => value)' do
+    before(:all) do
+      growth_push.create_client(TOKEN, Growthpush::OS_IOS)
+      tag = growth_push.create_tag('Gender' => 'male')
+    end
+
+    it 'test' do
+      (tag.tag_id > 0).should be_true
+      (tag.client_id > 0).should be_true
+      tag.value.should == 'male'
+    end
+  end
+
   describe 'create tag without client using name & value' do
     before(:all) do
       growth_push2 = Growthpush.new(APPLICATION_ID, SECRET)
@@ -199,6 +235,16 @@ describe "Growthpush" do
       proc{ growth_push2.create_tag('Gender', 'male') }.should raise_error
     end
   end
+
+  describe 'create tag without client using hash (name => value)' do
+      before(:all) do
+        growth_push2 = Growthpush.new(APPLICATION_ID, SECRET)
+      end
+
+      it 'test' do
+        proc{ growth_push2.create_tag('Gender' => 'male') }.should raise_error
+      end
+    end
 
   describe 'create tag with empty name (using token)' do
     it 'test' do
