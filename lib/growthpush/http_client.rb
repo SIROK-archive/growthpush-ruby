@@ -7,20 +7,21 @@ class HttpClient
 
   ENDPOINT = 'https://api.growthpush.com/';
 
+  #@conn
+
   def initialize
-  end
-
-  def post(api,params,version = 1)
-    url = "/#{version}/#{api}"
-
-    conn = Faraday.new(:url => ENDPOINT) do |faraday|
+    @conn = Faraday.new(:url => ENDPOINT) do |faraday|
       faraday.request  :url_encoded             # form-encode POST params
       faraday.response :logger                  # log requests to STDOUT
       faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
       faraday.use FaradayMiddleware::ParseJson, :content_type => /\bjson$/
     end
+  end
 
-    response = conn.post do |req|
+  def post(api,params,version = 1)
+    url = "/#{version}/#{api}"
+
+    response = @conn.post do |req|
       req.url url
       req.headers['Content-Type'] = 'application/json'
       req.params = params
