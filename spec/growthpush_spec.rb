@@ -18,7 +18,6 @@ describe "Growthpush" do
 
   before(:all) do
     growth_push = Growthpush.new(APPLICATION_ID, SECRET)
-    growth_push2 = Growthpush.new(APPLICATION_ID, SECRET)
   end
 
   describe "initialize" do
@@ -73,6 +72,18 @@ describe "Growthpush" do
 
   end
 
+  describe 'create event (using token)' do
+    before(:all) do
+      event = growth_push.create_event(TOKEN,'Launch', '')
+    end
+
+    it 'test' do
+      (event.goal_id > 0).should be_true
+      (event.timestamp > 0).should be_true
+      (event.client_id > 0).should be_true
+    end
+  end
+
   describe 'create event (with client)' do
     before(:all) do
       client = growth_push.create_client(TOKEN, Growthpush::OS_IOS)
@@ -100,12 +111,22 @@ describe "Growthpush" do
   end
 
   describe 'create event without client using name & value' do
+    before(:all) do
+      growth_push2 = Growthpush.new(APPLICATION_ID, SECRET)
+    end
+
     it 'test' do
       proc{ growth_push2.create_event('Launch', '') }.should raise_error
     end
   end
 
-  describe 'create event with empty name' do
+  describe 'create event with empty name (using token)' do
+    it 'test' do
+      proc{ growth_push.create_event(TOKEN, '') }.should raise_error
+    end
+  end
+
+  describe 'create event with empty name (with client)' do
     before(:all) do
       client = growth_push.create_client(TOKEN, Growthpush::OS_IOS)
     end
@@ -115,13 +136,31 @@ describe "Growthpush" do
     end
   end
 
-  describe 'create event with long name' do
+  describe 'create event with long name (using token)' do
+    it 'test' do
+      proc{ growth_push.create_event(TOKEN, 'long' * 100) }.should raise_error
+    end
+  end
+
+  describe 'create event with long name (with client)' do
     before(:all) do
       client = growth_push.create_client(TOKEN, Growthpush::OS_IOS)
     end
 
     it 'test' do
       proc{ growth_push.create_event(client, 'long' * 100) }.should raise_error
+    end
+  end
+
+  describe 'create tag (using token)' do
+    before(:all) do
+      tag = growth_push.create_tag(TOKEN, 'Gender', 'male')
+    end
+
+    it 'test' do
+      (tag.tag_id > 0).should be_true
+      (tag.client_id > 0).should be_true
+      tag.value.should == 'male'
     end
   end
 
@@ -152,22 +191,32 @@ describe "Growthpush" do
   end
 
   describe 'create tag without client using name & value' do
+    before(:all) do
+      growth_push2 = Growthpush.new(APPLICATION_ID, SECRET)
+    end
+
     it 'test' do
       proc{ growth_push2.create_tag('Gender', 'male') }.should raise_error
     end
   end
 
-  describe 'create tag with empty name' do
-    before(:all) do
-      client = growth_push.create_client(TOKEN, Growthpush::OS_IOS)
-    end
-
+  describe 'create tag with empty name (using token)' do
     it 'test' do
-      proc{ growth_push.create_tag(client, '') }.should raise_error
+      proc{ growth_push.create_tag(TOKEN, '') }.should raise_error
     end
   end
 
-  describe 'create tag with long name' do
+  describe 'create tag with empty name (with client)' do
+      before(:all) do
+        client = growth_push.create_client(TOKEN, Growthpush::OS_IOS)
+      end
+
+      it 'test' do
+        proc{ growth_push.create_tag(client, '') }.should raise_error
+      end
+    end
+
+  describe 'create tag with long name (with client)' do
     before(:all) do
       client = growth_push.create_client(TOKEN, Growthpush::OS_IOS)
     end

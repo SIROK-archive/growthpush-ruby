@@ -18,34 +18,10 @@ class Client
   attr_reader :status
   attr_reader :created
 
-  def initialize(*args)
-    case args.length
-      when 1
-        initialize_1(args[0])
-      when 2
-        initialize_2(args[0],args[1])
-      else
-        raise ArgumentError
-    end
-  end
-
-  def initialize_1(client)
-    @id = client.id
-    @application_id = client.application_id
-    @code = client.code
-    @token = client.token
-    @os = client.os
-    @environment = client.environment
-    @status = client.status
-    @created = client.created
-  end
-  private :initialize_1
-
-  def initialize_2(token, os=nil)
+  def initialize(token, os=nil)
     @token = token
     @os = os
   end
-  private :initialize_2
 
   def save(growth_push)
 

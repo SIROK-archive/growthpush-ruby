@@ -40,7 +40,11 @@ class Growthpush
         create_event_2(args[0])
       when 2
         if args[0].kind_of? String
-          create_event_2(args[0],args[1])
+          if !@client.nil?
+            create_event_2(args[0],args[1])
+          else
+            create_event_3(args[0],args[1])
+          end
         elsif args[0].kind_of? Client
           create_event_3(args[0],args[1])
         else
@@ -54,7 +58,9 @@ class Growthpush
   end
 
   def create_event_3(client, name, value=nil)
-    if client.instance_of? Client
+    @client = nil
+
+    if !client.instance_of? Client
       client = Client.new(client)
     end
 
@@ -64,10 +70,6 @@ class Growthpush
   private :create_event_3
 
   def create_event_2(name, value = nil)
-    if @client.nil?
-      raise GrowthPushException.new('Client not found')
-    end
-
     return create_event_3(@client,name,value)
   end
   private :create_event_2
@@ -78,7 +80,11 @@ class Growthpush
         create_tag_2(args[0])
       when 2
         if args[0].kind_of? String
-          create_tag_2(args[0],args[1])
+          if !@client.nil?
+            create_tag_2(args[0],args[1])
+          else
+            create_tag_3(args[0],args[1])
+          end
         elsif args[0].kind_of? Client
           create_tag_3(args[0],args[1])
         else
@@ -92,7 +98,9 @@ class Growthpush
   end
 
   def create_tag_3(client, name, value=nil)
-    if client.instance_of? Client
+    @client = nil
+
+    if !client.instance_of? Client
       client = Client.new(client)
     end
 
@@ -102,10 +110,6 @@ class Growthpush
   private :create_tag_3
 
   def create_tag_2(name, value=nil)
-    if @client.nil?
-      raise GrowthPushException.new('Client not found')
-    end
-
     return create_tag_3(@client, name, value)
   end
   private :create_tag_2
