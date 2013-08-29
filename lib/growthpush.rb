@@ -62,19 +62,20 @@ class Growthpush
   end
 
   def create_event_3(client, name, value=nil)
-    @client = nil
 
     if !client.instance_of? Client
       client = Client.new(client)
     end
 
-    event = Event.new(client, name, value)
-    return event.save(self)
+    @client = client
+
+    return create_event_2(name, value)
   end
   private :create_event_3
 
   def create_event_2(name, value = nil)
-    return create_event_3(@client,name,value)
+    event = Event.new(@client, name, value)
+    return event.save(self)
   end
   private :create_event_2
 
@@ -115,19 +116,20 @@ class Growthpush
   end
 
   def create_tag_3(client, name, value=nil)
-    @client = nil
 
     if !client.instance_of? Client
       client = Client.new(client)
     end
 
-    tag = Tag.new(client, name, value)
-    return tag.save(self)
+    @client = client
+
+    return create_tag_2(name, value)
   end
   private :create_tag_3
 
   def create_tag_2(name, value=nil)
-    return create_tag_3(@client, name, value)
+    tag = Tag.new(@client, name, value)
+    return tag.save(self)
   end
   private :create_tag_2
 
