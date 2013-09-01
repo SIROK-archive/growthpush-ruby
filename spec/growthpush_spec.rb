@@ -1,6 +1,6 @@
 require 'digest/sha2'
 require 'spec_helper'
-require 'growthpush'
+require 'growth_push'
 
 APPLICATION_ID = 128
 SECRET = 'FUAOPniE3pGTczjU7kUkzbY2j2K1SU5S'
@@ -17,21 +17,21 @@ describe "Growthpush" do
   tag = nil
 
   before(:all) do
-    growth_push = Growthpush.new(APPLICATION_ID, SECRET)
+    growth_push = GrowthPush.new(APPLICATION_ID, SECRET)
   end
 
   describe "initialize" do
     it 'test' do
       growth_push.application_id.should == APPLICATION_ID
       growth_push.secret.should == SECRET
-      growth_push.environment.should == Growthpush::ENVIRONMENT_PRODUCTION
+      growth_push.environment.should == GrowthPush::ENVIRONMENT_PRODUCTION
     end
   end
 
   describe 'create_client' do
     before(:all) do
       token = Digest::SHA256.hexdigest(Random.rand.to_s)
-      client = growth_push.create_client(token, Growthpush::OS_IOS)
+      client = growth_push.create_client(token, GrowthPush::OS_IOS)
     end
 
     it 'test' do
@@ -42,7 +42,7 @@ describe "Growthpush" do
 
   describe 'create client with duplicate token' do
     before(:all) do
-      client = growth_push.create_client(TOKEN, Growthpush::OS_IOS)
+      client = growth_push.create_client(TOKEN, GrowthPush::OS_IOS)
     end
 
     it 'test' do
@@ -53,7 +53,7 @@ describe "Growthpush" do
   describe 'create client with bad token' do
 
     it 'test' do
-      proc{ growth_push.create_client('bad_token', Growthpush::OS_IOS) }.should raise_error
+      proc{ growth_push.create_client('bad_token', GrowthPush::OS_IOS) }.should raise_error
     end
 
   end
@@ -78,7 +78,7 @@ describe "Growthpush" do
 
   describe 'create event (with client)' do
     before(:all) do
-      client = growth_push.create_client(TOKEN, Growthpush::OS_IOS)
+      client = growth_push.create_client(TOKEN, GrowthPush::OS_IOS)
       event = growth_push.create_event(client,'Launch', '')
     end
 
@@ -91,7 +91,7 @@ describe "Growthpush" do
 
   describe 'create event (with client) using name & value' do
     before(:all) do
-      growth_push.create_client(TOKEN, Growthpush::OS_IOS)
+      growth_push.create_client(TOKEN, GrowthPush::OS_IOS)
       event = growth_push.create_event('Launch', '')
     end
 
@@ -104,7 +104,7 @@ describe "Growthpush" do
 
   describe 'create event (with client) using hash (name => value)' do
     before(:all) do
-      growth_push.create_client(TOKEN, Growthpush::OS_IOS)
+      growth_push.create_client(TOKEN, GrowthPush::OS_IOS)
       event = growth_push.create_event('Launch' => '')
     end
 
@@ -117,7 +117,7 @@ describe "Growthpush" do
 
   describe 'create event without client using name & value' do
     before(:all) do
-      growth_push2 = Growthpush.new(APPLICATION_ID, SECRET)
+      growth_push2 = GrowthPush.new(APPLICATION_ID, SECRET)
     end
 
     it 'test' do
@@ -127,7 +127,7 @@ describe "Growthpush" do
 
   describe 'create event without client using hash (name => value)' do
     before(:all) do
-      growth_push2 = Growthpush.new(APPLICATION_ID, SECRET)
+      growth_push2 = GrowthPush.new(APPLICATION_ID, SECRET)
     end
 
     it 'test' do
@@ -137,7 +137,7 @@ describe "Growthpush" do
 
   describe 'create event with empty name (using token)' do
     before(:all) do
-      growth_push2 = Growthpush.new(APPLICATION_ID, SECRET)
+      growth_push2 = GrowthPush.new(APPLICATION_ID, SECRET)
     end
 
     it 'test' do
@@ -147,7 +147,7 @@ describe "Growthpush" do
 
   describe 'create event with empty name (with client)' do
     before(:all) do
-      client = growth_push.create_client(TOKEN, Growthpush::OS_IOS)
+      client = growth_push.create_client(TOKEN, GrowthPush::OS_IOS)
     end
 
     it 'test' do
@@ -157,7 +157,7 @@ describe "Growthpush" do
 
   describe 'create event with long name (using token)' do
     before(:all) do
-      growth_push2 = Growthpush.new(APPLICATION_ID, SECRET)
+      growth_push2 = GrowthPush.new(APPLICATION_ID, SECRET)
     end
 
     it 'test' do
@@ -167,7 +167,7 @@ describe "Growthpush" do
 
   describe 'create event with long name (with client)' do
     before(:all) do
-      client = growth_push.create_client(TOKEN, Growthpush::OS_IOS)
+      client = growth_push.create_client(TOKEN, GrowthPush::OS_IOS)
     end
 
     it 'test' do
@@ -189,7 +189,7 @@ describe "Growthpush" do
 
   describe 'create tag (with client)' do
     before(:all) do
-      client = growth_push.create_client(TOKEN, Growthpush::OS_IOS)
+      client = growth_push.create_client(TOKEN, GrowthPush::OS_IOS)
       tag = growth_push.create_tag(client, 'Gender', 'male')
     end
 
@@ -202,7 +202,7 @@ describe "Growthpush" do
 
   describe 'create tag (with client) using name & value' do
     before(:all) do
-      growth_push.create_client(TOKEN, Growthpush::OS_IOS)
+      growth_push.create_client(TOKEN, GrowthPush::OS_IOS)
       tag = growth_push.create_tag('Gender', 'male')
     end
 
@@ -215,7 +215,7 @@ describe "Growthpush" do
 
   describe 'create tag (with client) using hash (name => value)' do
     before(:all) do
-      growth_push.create_client(TOKEN, Growthpush::OS_IOS)
+      growth_push.create_client(TOKEN, GrowthPush::OS_IOS)
       tag = growth_push.create_tag('Gender' => 'male')
     end
 
@@ -228,7 +228,7 @@ describe "Growthpush" do
 
   describe 'create tag without client using name & value' do
     before(:all) do
-      growth_push2 = Growthpush.new(APPLICATION_ID, SECRET)
+      growth_push2 = GrowthPush.new(APPLICATION_ID, SECRET)
     end
 
     it 'test' do
@@ -238,7 +238,7 @@ describe "Growthpush" do
 
   describe 'create tag without client using hash (name => value)' do
     before(:all) do
-      growth_push2 = Growthpush.new(APPLICATION_ID, SECRET)
+      growth_push2 = GrowthPush.new(APPLICATION_ID, SECRET)
     end
 
     it 'test' do
@@ -248,7 +248,7 @@ describe "Growthpush" do
 
   describe 'create tag with empty name (using token)' do
     before(:all) do
-      growth_push2 = Growthpush.new(APPLICATION_ID, SECRET)
+      growth_push2 = GrowthPush.new(APPLICATION_ID, SECRET)
     end
 
     it 'test' do
@@ -258,7 +258,7 @@ describe "Growthpush" do
 
   describe 'create tag with empty name (with client)' do
     before(:all) do
-      client = growth_push.create_client(TOKEN, Growthpush::OS_IOS)
+      client = growth_push.create_client(TOKEN, GrowthPush::OS_IOS)
     end
 
     it 'test' do
@@ -268,7 +268,7 @@ describe "Growthpush" do
 
   describe 'create tag with long name (using token)' do
     before(:all) do
-      growth_push2 = Growthpush.new(APPLICATION_ID, SECRET)
+      growth_push2 = GrowthPush.new(APPLICATION_ID, SECRET)
     end
 
     it 'test' do
@@ -278,7 +278,7 @@ describe "Growthpush" do
 
   describe 'create tag with long name (with client)' do
     before(:all) do
-      client = growth_push.create_client(TOKEN, Growthpush::OS_IOS)
+      client = growth_push.create_client(TOKEN, GrowthPush::OS_IOS)
     end
 
     it 'test' do

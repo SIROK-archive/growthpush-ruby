@@ -6,7 +6,7 @@ require 'growthpush/growth_push_exception'
 require 'growthpush/http_client'
 require 'growthpush/http_response'
 
-class Growthpush
+class GrowthPush
   OS_IOS = 'ios';
   OS_ANDROID = 'android';
 
@@ -22,7 +22,7 @@ class Growthpush
   attr_reader :secret
   attr_reader  :environment
 
-  def initialize(application_id, secret, environment= Growthpush::ENVIRONMENT_PRODUCTION)
+  def initialize(application_id, secret, environment= GrowthPush::ENVIRONMENT_PRODUCTION)
     @application_id = application_id
     @secret = secret
     @environment = environment

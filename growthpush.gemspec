@@ -5,7 +5,7 @@ require 'growthpush/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'growthpush'
-  spec.version       = Growthpush::VERSION
+  spec.version       = GrowthPush::VERSION
   spec.authors       = ['katty0324','asip']
   spec.email         = ['kataoka@sirok.co.jp','ys.ashida@gmail.com']
   spec.description   = %q{GrowthPush SDK for Ruby}
