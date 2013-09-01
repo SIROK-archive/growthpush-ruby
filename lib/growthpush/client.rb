@@ -1,3 +1,6 @@
+#
+# Client Class (クライント クラス)
+#
 class Client
 
   #@id = nil
@@ -18,11 +21,22 @@ class Client
   attr_reader :status
   attr_reader :created
 
+  #
+  # initializer (イニシャライザ)
+  # @param [String] token device token (デバイス・トークン)
+  # @param [String] os os name (OS名)
+  #
   def initialize(token, os=nil)
     @token = token
     @os = os
   end
 
+  #
+  # save client (クライアントを登録する)
+  # @param [GrowthPush] growth_push GrowthPush object (GrowthPushオブジェクト)
+  # @raise [GrowthPushException] exception (例外)
+  # @return [Client] client (クライアント)
+  #
   def save(growth_push)
 
     begin
@@ -44,6 +58,10 @@ class Client
     return self
   end
 
+  #
+  # set attributes (属性をセットする)
+  # @param [Hash] attributes attributes (属性)
+  #
   def attributes=(attributes)
     @id = attributes['id']
     @application_id = attributes['applicationId']

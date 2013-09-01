@@ -1,3 +1,6 @@
+#
+# Tag Class (タグクラス)
+#
 class Tag
 
   #@name
@@ -13,12 +16,24 @@ class Tag
 
   alias_method :tag_id, :id
 
+  #
+  # initializer (イニシャライザ)
+  # @param [Client] client client object (クライント)
+  # @param [String] name tag name (タグ名)
+  # @param [String] value value (タグの値)
+  #
   def initialize(client,name,value=nil)
     @client = client
     @name = name
     @value = value
   end
 
+  #
+  # save tag
+  # @param [GrowthPush] growth_push GrowthPush object (GrowthPushオブジェクト)
+  # @raise [GrowthPushException] exception (例外)
+  # @return [Tag] tag (タグ)
+  #
   def save(growth_push)
     begin
       if @client.id && @client.code
@@ -54,6 +69,10 @@ class Tag
     return self
   end
 
+  #
+  # set attributes (属性をセットする)
+  # @param [Hash] attributes attributes (属性)
+  #
   def attributes=(attributes)
     @id = attributes['tagId'];
     @client_id = attributes['clientId'];

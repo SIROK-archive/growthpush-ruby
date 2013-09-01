@@ -1,3 +1,6 @@
+#
+# Event Class (イベント クラス)
+#
 class Event
 
   #@name = nil
@@ -13,12 +16,24 @@ class Event
   attr_reader :client_id
   attr_reader :value
 
-  def initialize(client, name, value)
+  #
+  # initializer
+  # @param [Client] client Client object (クライアント)
+  # @param [String] name event name (イベント名)
+  # @param [String] value value (イベントの追加情報)
+  #
+  def initialize(client, name, value=nil)
     @client = client
     @name = name
     @value = value
   end
 
+  #
+  # save event (イベントを登録する)
+  # @param [GrowthPush] growth_push GrowthPush object (GrowthPushオブジェクト)
+  # @raise [GrowthPushException] exception (例外)
+  # @return [Event] event (イベント)
+  #
   def save(growth_push)
     begin
       if @client.id && @client.code
@@ -54,6 +69,10 @@ class Event
     return self
   end
 
+  #
+  # set attributes (属性をセットする)
+  # @param [Hash] attributes attributes (属性)
+  #
   def attributes=(attributes)
     @goal_id = attributes['goalId'];
     @timestamp = attributes['timestamp'];

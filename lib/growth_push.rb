@@ -6,6 +6,9 @@ require 'growthpush/growth_push_exception'
 require 'growthpush/http_client'
 require 'growthpush/http_response'
 
+#
+# GrowthPush Class (GrowthPush クラス)
+#
 class GrowthPush
   OS_IOS = 'ios';
   OS_ANDROID = 'android';
@@ -22,18 +25,66 @@ class GrowthPush
   attr_reader :secret
   attr_reader  :environment
 
+  #
+  # initializer (イニシャライザ)
+  # @param [Integer] application_id application id (アプリID)
+  # @param [String] secret secret key (アプリのシークレットキー)
+  # @param [String] environment environment (環境設定)
+  #
   def initialize(application_id, secret, environment= GrowthPush::ENVIRONMENT_PRODUCTION)
     @application_id = application_id
     @secret = secret
     @environment = environment
   end
 
+  #
+  # create client (クライアントを生成する)
+  # @param [String] token device token (デバイス・トークン)
+  # @param [String] os os name (OS名)
+  # @return [Client] client object (クライアント)
+  #
   def create_client(token, os)
     client = Client.new(token, os)
     @client = client
     return client.save(self)
   end
 
+  #
+  # create event (イベントを生成する)
+  # @overload create_event(name)
+  #  @param [String] name event name (イベント名)
+  #  @raise [GrowthPushException] exception (例外)
+  #  @return [Event] event (イベント)
+  # @overload create_event(map)
+  #  @param [Hash] map event hash (イベントのハッシュ)
+  # @overload create_event(name, value)
+  #  @param [String] name event name (イベント名)
+  #  @param [String] value value (イベントの追加情報)
+  #  @raise [GrowthPushException] exception (例外)
+  #  @return [Event] event (イベント)
+  # @overload create_event(token, name)
+  #  @param [String] token device token (デバイス・トークン)
+  #  @param [String] name event name (イベント名)
+  #  @raise [GrowthPushException] exception (例外)
+  #  @return [Event] event (イベント)
+  # @overload create_event(client, name)
+  #  @param [Client] client Client object (クライアント)
+  #  @param [String] name event name (イベント名)
+  #  @raise [GrowthPushException] exception (例外)
+  #  @return [Event] event (イベント)
+  # @overload create_event(token, name, value)
+  #  @param [String] token device token (デバイス・トークン)
+  #  @param [String] name event name (イベント名)
+  #  @param [String] value value (イベントの追加情報)
+  #  @raise [GrowthPushException]exception (例外)
+  #  @return [Event] event (イベント)
+  # @overload create_event(client, name, value)
+  #  @param [Client] client Client object (クライアント)
+  #  @param [String] name event name (イベント名)
+  #  @param [String] value value (イベントの追加情報)
+  #  @raise [GrowthPushException] exception (例外)
+  #  @return [Event] event (イベント)
+  #
   def create_event(*args)
     case args.length
       when 1
@@ -88,6 +139,42 @@ class GrowthPush
   end
   private :create_event_1
 
+  #
+  # create tag (タグを生成する)
+  # @overload create_tag(name)
+  #  @param [String] name tag name (タグ名)
+  #  @raise [GrowthPushException] exception (例外)
+  #  @return [Tag] tag (タグ)
+  # @overload create_tag(map)
+  #  @param [Hash] map tag hash (タグのハッシュ)
+  # @overload create_tag(name, value)
+  #  @param [String] name tag name (タグ名)
+  #  @param [String] value tag value (タグの値)
+  #  @raise [GrowthPushException] exception (例外)
+  #  @return [Tag] tag (タグ)
+  # @overload create_tag(token, name)
+  #  @param [String] token device token (デバイス・トークン)
+  #  @param [String] name tag name (タグ名)
+  #  @raise [GrowthPushException] exception (例外)
+  #  @return [Tag] tag (タグ)
+  # @overload create_tag(client, name)
+  #  @param [Client] client Client object (クライアント)
+  #  @param [String] name tag name (タグ名)
+  #  @raise [GrowthPushException] exception (例外)
+  #  @return [Tag] tag (タグ)
+  # @overload create_tag(token, name, value)
+  #  @param [String] token device token (デバイス・トークン)
+  #  @param [String] name tag name (タグ名)
+  #  @param [String] value tag value (タグの値)
+  #  @raise [GrowthPushException] exception (例外)
+  #  @return [Tag] tag (タグ)
+  # @overload create_tag(client, name, value)
+  #  @param [Client] client Client object (クライアント)
+  #  @param [String] name tag name (タグ名)
+  #  @param [String] value value (タグの値)
+  #  @raise [GrowthPushException] exception (例外)
+  #  @return [Tag] tag (タグ)
+  #
   def create_tag(*args)
     case args.length
       when 1
