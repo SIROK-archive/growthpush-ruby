@@ -17,10 +17,10 @@ class Event
   attr_reader :value
 
   #
-  # initializer
+  # initializer (イニシャライザ)
   # @param [Client] client Client object (クライアント)
   # @param [String] name event name (イベント名)
-  # @param [String] value value (イベントの追加情報)
+  # @param [String] value optional info of event (イベントの追加情報)
   #
   def initialize(client, name, value=nil)
     @client = client

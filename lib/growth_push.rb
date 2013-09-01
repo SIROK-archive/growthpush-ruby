@@ -38,7 +38,7 @@ class GrowthPush
   end
 
   #
-  # create client (クライアントを生成する)
+  # create client (クライアントを作成する)
   # @param [String] token device token (デバイス・トークン)
   # @param [String] os os name (OS名)
   # @return [Client] client object (クライアント)
@@ -50,7 +50,7 @@ class GrowthPush
   end
 
   #
-  # create event (イベントを生成する)
+  # create event (イベントを作成する)
   # @overload create_event(name)
   #  @param [String] name event name (イベント名)
   #  @raise [GrowthPushException] exception (例外)
@@ -59,7 +59,7 @@ class GrowthPush
   #  @param [Hash] map event hash (イベントのハッシュ)
   # @overload create_event(name, value)
   #  @param [String] name event name (イベント名)
-  #  @param [String] value value (イベントの追加情報)
+  #  @param [String] value optional info of event (イベントの追加情報)
   #  @raise [GrowthPushException] exception (例外)
   #  @return [Event] event (イベント)
   # @overload create_event(token, name)
@@ -75,13 +75,13 @@ class GrowthPush
   # @overload create_event(token, name, value)
   #  @param [String] token device token (デバイス・トークン)
   #  @param [String] name event name (イベント名)
-  #  @param [String] value value (イベントの追加情報)
+  #  @param [String] value optional info of event (イベントの追加情報)
   #  @raise [GrowthPushException]exception (例外)
   #  @return [Event] event (イベント)
   # @overload create_event(client, name, value)
   #  @param [Client] client Client object (クライアント)
   #  @param [String] name event name (イベント名)
-  #  @param [String] value value (イベントの追加情報)
+  #  @param [String] value optional info of event (イベントの追加情報)
   #  @raise [GrowthPushException] exception (例外)
   #  @return [Event] event (イベント)
   #
@@ -140,7 +140,7 @@ class GrowthPush
   private :create_event_1
 
   #
-  # create tag (タグを生成する)
+  # create tag (タグを作成する)
   # @overload create_tag(name)
   #  @param [String] name tag name (タグ名)
   #  @raise [GrowthPushException] exception (例外)

@@ -29,7 +29,7 @@ class Tag
   end
 
   #
-  # save tag
+  # save tag (タグを登録する)
   # @param [GrowthPush] growth_push GrowthPush object (GrowthPushオブジェクト)
   # @raise [GrowthPushException] exception (例外)
   # @return [Tag] tag (タグ)
