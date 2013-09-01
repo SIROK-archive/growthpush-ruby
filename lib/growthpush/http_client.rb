@@ -29,7 +29,7 @@ class HttpClient
 
     http_response = HttpResponse.new(response)
 
-    if !http_response.is_ok?
+    if !http_response.ok?
       body = http_response.body
       raise GrowthPushException.new(body['message'], response.status)
     end

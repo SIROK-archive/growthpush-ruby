@@ -13,7 +13,7 @@ class HttpResponse
     @body = response.body
   end
 
-  def is_ok?
+  def ok?
     @response.success?
   end
 
