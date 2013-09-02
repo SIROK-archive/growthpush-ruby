@@ -1,7 +1,6 @@
 #
 # Tag Class (タグクラス)
 #
-# @version 0.1.0
 # @!attribute [r] name
 #  @return [String] tag name (タグ名)
 # @!attribute [r] id

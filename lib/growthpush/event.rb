@@ -1,7 +1,6 @@
 #
 # Event Class (イベント クラス)
 #
-# @version 0.1.0
 # @!attribute [r] name
 #  @return [String] event name (イベント名)
 # @!attribute [r] goal_id

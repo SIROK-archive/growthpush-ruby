@@ -1,7 +1,6 @@
 #
 # Client Class (クライント クラス)
 #
-# @version 0.1.0
 # @!attribute [r] id
 #  @return [String] client id (クライアントID)
 # @!attribute [r] application_id

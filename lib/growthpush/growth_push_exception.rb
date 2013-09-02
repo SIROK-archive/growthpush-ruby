@@ -1,7 +1,6 @@
 #
 # GrowthPush Exception Class (GrowthPush 例外クラス)
 #
-# @version 0.1.0
 # @!attribute [r] code
 #  @return [String] error code (エラー・コード)
 #

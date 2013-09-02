@@ -1,7 +1,6 @@
 #
 # HTTP Response Class (HTTPレスポンス クラス)
 #
-# @version 0.1.0
 # @!attribute [r] header
 #  @return [Hash] http response headers (HTTPレスポンス・ヘッダ)
 # @!attribute [r] body
