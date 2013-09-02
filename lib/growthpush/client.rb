@@ -14,7 +14,7 @@
 # @!attribute [r] environment
 #  @return [String] environment (環境設定)
 # @!attribute [r] status
-#  @return [String] status code (ステータス・コード)
+#  @return [String] status (状態)
 # @!attribute [r] created
 #  @return [String] created datetime (作成日時)
 #

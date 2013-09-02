@@ -6,7 +6,7 @@
 # @!attribute [r] goal_id
 #  @return [String] goal id (ゴールID)
 # @!attribute [r] timestamp
-#  @return [String] saved datetime (登録日時)
+#  @return [String] time stamp (タイム・スタンプ)
 # @!attribute [r] client_id
 #  @return [String] client id (クライアントID)
 # @!attribute [r] value
