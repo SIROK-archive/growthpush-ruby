@@ -10,7 +10,7 @@
 # @!attribute [r] client_id
 #  @return [String] client id (クライアントID)
 # @!attribute [r] value
-#  @return [String] optional info event (イベントの追加情報)
+#  @return [String] optional info of event (イベントの追加情報)
 #
 class Event
 
