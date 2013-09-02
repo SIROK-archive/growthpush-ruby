@@ -3,6 +3,10 @@ GrowthPush SDK for Ruby
 
 GrowthPush is push notification and analysis platform for smart devices. GrowthPush SDK for Ruby provides registration function of client devices and events.
 
+```shell
+gem install growthpush
+```
+
 ```ruby
 require 'growth_push';
 
