@@ -5,13 +5,12 @@ require 'faraday_middleware'
 #
 # HTTP Client Class (HTTPクライアント クラス)
 #
+# @version 0.1.0
+#
 class HttpClient
   include Singleton
 
-  ENDPOINT = 'https://api.growthpush.com/';
-
-  #@conn
-
+  ENDPOINT = 'https://api.growthpush.com/'
 
   #
   # initializer (イニシャライザ)

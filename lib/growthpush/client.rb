@@ -1,16 +1,25 @@
 #
 # Client Class (クライント クラス)
 #
+# @version 0.1.0
+# @!attribute [r] id
+#  @return [String] client id (クライアントID)
+# @!attribute [r] application_id
+#  @return [String] application id (アプリID)
+# @!attribute [r] code
+#  @return [String] authentication key (認証キー)
+# @!attribute [r] token
+#  @return [String] device token (デバイス・トークン)
+# @!attribute [r] os
+#  @return [String] os name (OS名)
+# @!attribute [r] environment
+#  @return [String] environment (環境設定)
+# @!attribute [r] status
+#  @return [String] status code (ステータス・コード)
+# @!attribute [r] created
+#  @return [String] created datetime (作成日時)
+#
 class Client
-
-  #@id = nil
-  #@application_id = nil
-  #@code = nil
-  #@token = nil
-  #@os = nil
-  #@environment = nil
-  #@status = nil
-  #@created = nil
 
   attr_reader :id
   attr_reader :application_id

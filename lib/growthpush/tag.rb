@@ -1,13 +1,17 @@
 #
 # Tag Class (タグクラス)
 #
+# @version 0.1.0
+# @!attribute [r] name
+#  @return [String] tag name (タグ名)
+# @!attribute [r] id
+#  @return [String] tag id (タグID)
+# @!attribute [r] client_id
+#  @return [String] client id (クライアントID)
+# @!attribute [r] value
+#  @return [String] tag value (タグの値)
+#
 class Tag
-
-  #@name
-  #@tag_id
-  #@client_id
-  #@value
-  #@client
 
   attr_reader :name
   attr_reader :id

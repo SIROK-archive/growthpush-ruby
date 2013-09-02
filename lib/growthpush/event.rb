@@ -1,14 +1,19 @@
 #
 # Event Class (イベント クラス)
 #
+# @version 0.1.0
+# @!attribute [r] name
+#  @return [String] event name (イベント名)
+# @!attribute [r] goal_id
+#  @return [String] goal id (ゴールID)
+# @!attribute [r] timestamp
+#  @return [String] saved datetime (登録日時)
+# @!attribute [r] client_id
+#  @return [String] client id (クライアントID)
+# @!attribute [r] value
+#  @return [String] optional info event (イベントの追加情報)
+#
 class Event
-
-  #@name = nil
-  #@goal_id = nil
-  #@timestamp = nil
-  #@client_id = nil
-  #@value = nil
-  #@client = nil
 
   attr_reader :name
   attr_reader :goal_id

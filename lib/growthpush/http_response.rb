@@ -1,11 +1,13 @@
 #
 # HTTP Response Class (HTTPレスポンス クラス)
 #
+# @version 0.1.0
+# @!attribute [r] header
+#  @return [Hash] http response headers (HTTPレスポンス・ヘッダ)
+# @!attribute [r] body
+#  @return [Hash] http response body (HTTPレスポンス・ボディ)
+#
 class HttpResponse
-
-  #@header
-  #@body
-  #@response
 
   attr_reader :header
   attr_reader :body

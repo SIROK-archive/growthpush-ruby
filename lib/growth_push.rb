@@ -9,6 +9,14 @@ require 'growthpush/http_response'
 #
 # GrowthPush Class (GrowthPush クラス)
 #
+# @version 0.1.0
+# @!attribute [r] application_id
+#  @return [String] application id (アプリID)
+# @!attribute [r] secret
+#  @return [String] secret key (アプリのシークレットキー)
+# @!attribute [r] environment
+#  @return [String] environment (環境設定)
+#
 class GrowthPush
   OS_IOS = 'ios';
   OS_ANDROID = 'android';
@@ -16,14 +24,9 @@ class GrowthPush
   ENVIRONMENT_PRODUCTION = 'production';
   ENVIRONMENT_DEVELOPMENT = 'development';
 
-  #@application_id = nil
-  #@secret = nil
-  #@environment = nil
-  #@client = nil
-
   attr_reader :application_id
   attr_reader :secret
-  attr_reader  :environment
+  attr_reader :environment
 
   #
   # initializer (イニシャライザ)
@@ -57,6 +60,8 @@ class GrowthPush
   #  @return [Event] event (イベント)
   # @overload create_event(map)
   #  @param [Hash] map event hash (イベントのハッシュ)
+  #  @raise [GrowthPushException] exception (例外)
+  #  @return [Event] event (イベント)
   # @overload create_event(name, value)
   #  @param [String] name event name (イベント名)
   #  @param [String] value optional info of event (イベントの追加情報)
@@ -147,6 +152,8 @@ class GrowthPush
   #  @return [Tag] tag (タグ)
   # @overload create_tag(map)
   #  @param [Hash] map tag hash (タグのハッシュ)
+  #  @raise [GrowthPushException] exception (例外)
+  #  @return [Tag] tag (タグ)
   # @overload create_tag(name, value)
   #  @param [String] name tag name (タグ名)
   #  @param [String] value tag value (タグの値)
