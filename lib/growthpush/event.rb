@@ -42,22 +42,22 @@ class Event
     begin
       if @client.id && @client.code
         http_response = HttpClient.instance.post('events',
-                                                     {
-                                                         'clientId' => @client.id,
-                                                         'code' => @client.code,
-                                                         'name' => self.name,
-                                                         'value' => self.value
-                                                     }
+                                                 {
+                                                   'clientId' => @client.id,
+                                                   'code' => @client.code,
+                                                   'name' => self.name,
+                                                   'value' => self.value
+                                                 }
         )
       elsif @client.token
         http_response = HttpClient.instance.post('events',
-                                                     {
-                                                         'applicationId' => growth_push.application_id,
-                                                         'secret' => growth_push.secret,
-                                                         'token' => @client.token,
-                                                         'name' => self.name,
-                                                         'value' => self.value,
-                                                     }
+                                                 {
+                                                   'applicationId' => growth_push.application_id,
+                                                   'secret' => growth_push.secret,
+                                                   'token' => @client.token,
+                                                   'name' => self.name,
+                                                   'value' => self.value,
+                                                 }
         )
       else
         raise GrowthPushException.new('Invalid client')
@@ -83,6 +83,7 @@ class Event
     @client_id = attributes['clientId'];
     @value = attributes['value'];
   end
+
   private :attributes=
 
 end

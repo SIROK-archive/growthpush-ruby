@@ -25,7 +25,7 @@ class Tag
   # @param [String] name tag name (タグ名)
   # @param [String] value value (タグの値)
   #
-  def initialize(client,name,value=nil)
+  def initialize(client, name, value=nil)
     @client = client
     @name = name
     @value = value
@@ -41,22 +41,22 @@ class Tag
     begin
       if @client.id && @client.code
         http_response = HttpClient.instance.post('tags',
-                                                     {
-                                                         'clientId' => @client.id,
-                                                         'code' => @client.code,
-                                                         'name' => self.name,
-                                                         'value' => self.value
-                                                     }
+                                                 {
+                                                   'clientId' => @client.id,
+                                                   'code' => @client.code,
+                                                   'name' => self.name,
+                                                   'value' => self.value
+                                                 }
         )
       elsif @client.token
         http_response = HttpClient.instance.post('tags',
-                                                     {
-                                                         'applicationId' => growth_push.application_id,
-                                                         'secret' => growth_push.secret,
-                                                         'token' => @client.token,
-                                                         'name' => self.name,
-                                                         'value' => self.value,
-                                                     }
+                                                 {
+                                                   'applicationId' => growth_push.application_id,
+                                                   'secret' => growth_push.secret,
+                                                   'token' => @client.token,
+                                                   'name' => self.name,
+                                                   'value' => self.value,
+                                                 }
         )
       else
         raise GrowthPushException.new('Invalid client')
@@ -81,6 +81,7 @@ class Tag
     @client_id = attributes['clientId'];
     @value = attributes['value'];
   end
+
   private :attributes=
 
 end

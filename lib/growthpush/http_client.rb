@@ -15,10 +15,10 @@ class HttpClient
   #
   def initialize
     @conn = Faraday.new(:url => ENDPOINT) do |faraday|
-      faraday.request  :url_encoded             # form-encode POST params
-      faraday.response :logger                  # log requests to STDOUT
-      faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
-      faraday.use FaradayMiddleware::ParseJson, :content_type => /\bjson$/
+      faraday.request  :url_encoded            # form-encode POST params
+      faraday.response :logger                 # log requests to STDOUT
+      faraday.adapter  Faraday.default_adapter # make requests with Net::HTTP
+      faraday.use      FaradayMiddleware::ParseJson, :content_type => /\bjson$/
     end
   end
 
@@ -30,7 +30,7 @@ class HttpClient
   # @raise [GrowthPushException] exception (例外)
   # @return [HttpResponse] http response (HTTPレスポンス)
   #
-  def post(api,params,version = 1)
+  def post(api, params, version = 1)
     url = "/#{version}/#{api}"
 
     response = @conn.post do |req|
