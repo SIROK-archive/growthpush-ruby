@@ -49,13 +49,13 @@ class Client
 
     begin
       http_response = HttpClient.instance.post('clients',
-                                                   {
-                                                       'applicationId' => growth_push.application_id,
-                                                       'secret' => growth_push.secret,
-                                                       'token' => self.token,
-                                                       'os' => self.os,
-                                                       'environment' => growth_push.environment
-                                                   }
+                                               {
+                                                 'applicationId' => growth_push.application_id,
+                                                 'secret' => growth_push.secret,
+                                                 'token' => self.token,
+                                                 'os' => self.os,
+                                                 'environment' => growth_push.environment
+                                               }
       )
     rescue GrowthPushException => ex
       raise GrowthPushException.new('Failed to save client: ' << ex.message, ex.code)
@@ -80,6 +80,7 @@ class Client
     @status = attributes['status']
     @created = attributes['created']
   end
+
   private :attributes=
 
 end

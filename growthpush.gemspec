@@ -6,8 +6,8 @@ require 'growthpush/version'
 Gem::Specification.new do |spec|
   spec.name          = 'growthpush'
   spec.version       = GrowthPush::VERSION
-  spec.authors       = ['katty0324','asip']
-  spec.email         = ['kataoka@sirok.co.jp','ys.ashida@gmail.com']
+  spec.authors       = ['katty0324', 'asip']
+  spec.email         = ['kataoka@sirok.co.jp', 'ys.ashida@gmail.com']
   spec.description   = %q{GrowthPush SDK for Ruby}
   spec.summary       = %q{GrowthPush is push notification and analysis platform for smart devices. GrowthPush SDK for Ruby provides registration function of client devices and events.}
   spec.homepage      = 'https://github.com/SIROK/growthpush-ruby'
