@@ -101,17 +101,17 @@ class GrowthPush
       when 2
         if args[0].kind_of? String
           if !@client.nil?
-            create_event_2(args[0],args[1])
+            create_event_2(args[0], args[1])
           else
-            create_event_3(args[0],args[1])
+            create_event_3(args[0], args[1])
           end
         elsif args[0].kind_of? Client
-          create_event_3(args[0],args[1])
+          create_event_3(args[0], args[1])
         else
           raise ArgumentError
         end
       when 3
-        create_event_3(args[0],args[1],args[2])
+        create_event_3(args[0], args[1], args[2])
       else
         raise ArgumentError
     end
@@ -127,12 +127,14 @@ class GrowthPush
 
     return create_event_2(name, value)
   end
+
   private :create_event_3
 
   def create_event_2(name, value = nil)
     event = Event.new(@client, name, value)
     return event.save(self)
   end
+
   private :create_event_2
 
   def create_event_1(map={})
@@ -142,6 +144,7 @@ class GrowthPush
 
     return create_event_2(map.keys[0].to_s, map.values[0])
   end
+
   private :create_event_1
 
   #
@@ -193,17 +196,17 @@ class GrowthPush
       when 2
         if args[0].kind_of? String
           if !@client.nil?
-            create_tag_2(args[0],args[1])
+            create_tag_2(args[0], args[1])
           else
-            create_tag_3(args[0],args[1])
+            create_tag_3(args[0], args[1])
           end
         elsif args[0].kind_of? Client
-          create_tag_3(args[0],args[1])
+          create_tag_3(args[0], args[1])
         else
           raise ArgumentError
         end
       when 3
-        create_tag_3(args[0],args[1],args[2])
+        create_tag_3(args[0], args[1], args[2])
       else
         raise ArgumentError
     end
@@ -219,12 +222,14 @@ class GrowthPush
 
     return create_tag_2(name, value)
   end
+
   private :create_tag_3
 
   def create_tag_2(name, value=nil)
     tag = Tag.new(@client, name, value)
     return tag.save(self)
   end
+
   private :create_tag_2
 
   def create_tag_1(map={})
@@ -234,6 +239,7 @@ class GrowthPush
 
     return create_tag_2(map.keys[0].to_s, map.values[0])
   end
+
   private :create_tag_1
 
 end

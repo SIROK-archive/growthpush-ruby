@@ -53,20 +53,20 @@ describe "Growthpush" do
   describe 'create client with bad token' do
 
     it 'test' do
-      proc{ growth_push.create_client('bad_token', GrowthPush::OS_IOS) }.should raise_error
+      proc { growth_push.create_client('bad_token', GrowthPush::OS_IOS) }.should raise_error
     end
 
   end
 
   describe 'create client with bad os' do
     it 'test' do
-      proc{ growth_push.create_client(TOKEN, 'bad_os') }.should raise_error
+      proc { growth_push.create_client(TOKEN, 'bad_os') }.should raise_error
     end
   end
 
   describe 'create event (using token)' do
     before(:all) do
-      event = growth_push.create_event(TOKEN,'Launch', '')
+      event = growth_push.create_event(TOKEN, 'Launch', '')
     end
 
     it 'test' do
@@ -79,7 +79,7 @@ describe "Growthpush" do
   describe 'create event (with client)' do
     before(:all) do
       client = growth_push.create_client(TOKEN, GrowthPush::OS_IOS)
-      event = growth_push.create_event(client,'Launch', '')
+      event = growth_push.create_event(client, 'Launch', '')
     end
 
     it 'test' do
@@ -121,7 +121,7 @@ describe "Growthpush" do
     end
 
     it 'test' do
-      proc{ growth_push2.create_event('Launch', '') }.should raise_error
+      proc { growth_push2.create_event('Launch', '') }.should raise_error
     end
   end
 
@@ -131,7 +131,7 @@ describe "Growthpush" do
     end
 
     it 'test' do
-      proc{ growth_push2.create_event('Launch' => '') }.should raise_error
+      proc { growth_push2.create_event('Launch' => '') }.should raise_error
     end
   end
 
@@ -141,7 +141,7 @@ describe "Growthpush" do
     end
 
     it 'test' do
-      proc{ growth_push2.create_event(TOKEN, '') }.should raise_error
+      proc { growth_push2.create_event(TOKEN, '') }.should raise_error
     end
   end
 
@@ -151,7 +151,7 @@ describe "Growthpush" do
     end
 
     it 'test' do
-      proc{ growth_push.create_event(client, '') }.should raise_error
+      proc { growth_push.create_event(client, '') }.should raise_error
     end
   end
 
@@ -161,7 +161,7 @@ describe "Growthpush" do
     end
 
     it 'test' do
-      proc{ growth_push2.create_event(TOKEN, 'long' * 100) }.should raise_error
+      proc { growth_push2.create_event(TOKEN, 'long' * 100) }.should raise_error
     end
   end
 
@@ -171,7 +171,7 @@ describe "Growthpush" do
     end
 
     it 'test' do
-      proc{ growth_push.create_event(client, 'long' * 100) }.should raise_error
+      proc { growth_push.create_event(client, 'long' * 100) }.should raise_error
     end
   end
 
@@ -232,7 +232,7 @@ describe "Growthpush" do
     end
 
     it 'test' do
-      proc{ growth_push2.create_tag('Gender', 'male') }.should raise_error
+      proc { growth_push2.create_tag('Gender', 'male') }.should raise_error
     end
   end
 
@@ -242,7 +242,7 @@ describe "Growthpush" do
     end
 
     it 'test' do
-      proc{ growth_push2.create_tag('Gender' => 'male') }.should raise_error
+      proc { growth_push2.create_tag('Gender' => 'male') }.should raise_error
     end
   end
 
@@ -252,7 +252,7 @@ describe "Growthpush" do
     end
 
     it 'test' do
-      proc{ growth_push2.create_tag(TOKEN, '') }.should raise_error
+      proc { growth_push2.create_tag(TOKEN, '') }.should raise_error
     end
   end
 
@@ -262,7 +262,7 @@ describe "Growthpush" do
     end
 
     it 'test' do
-      proc{ growth_push.create_tag(client, '') }.should raise_error
+      proc { growth_push.create_tag(client, '') }.should raise_error
     end
   end
 
@@ -272,7 +272,7 @@ describe "Growthpush" do
     end
 
     it 'test' do
-      proc{ growth_push2.create_tag(TOKEN, 'long' * 100) }.should raise_error
+      proc { growth_push2.create_tag(TOKEN, 'long' * 100) }.should raise_error
     end
   end
 
@@ -282,7 +282,7 @@ describe "Growthpush" do
     end
 
     it 'test' do
-      proc{ growth_push.create_tag(client, 'long' * 100) }.should raise_error
+      proc { growth_push.create_tag(client, 'long' * 100) }.should raise_error
     end
   end
 
