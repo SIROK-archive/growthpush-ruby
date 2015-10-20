@@ -1,6 +1,8 @@
 GrowthPush SDK for Ruby
 ==================
 
+:rotating_light: **This SDK is no longer maintained** :rotating_light:  
+
 GrowthPush is push notification and analysis platform for smart devices. GrowthPush SDK for Ruby provides registration function of client devices and events.
 
 ```shell
